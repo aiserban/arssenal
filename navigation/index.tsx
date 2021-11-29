@@ -45,7 +45,7 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
       <Stack.Group>
-        <Stack.Screen name='Article' component={ArticleScreen} />
+        <Stack.Screen name='Article' component={ArticleScreen} options={{ headerBackVisible: false, headerTransparent: true,  title: ''}} />
       </Stack.Group>
     </Stack.Navigator>
   );
