@@ -43,9 +43,9 @@ function RootNavigator() {
     <Stack.Navigator>
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Group screenOptions={{ presentation: 'transparentModal' }} >
+      <Stack.Group screenOptions={{ presentation: 'transparentModal', animation: 'fade' }} >
         <Stack.Screen name="Modal" component={ModalScreen} />
-        <Stack.Screen name="Blacklist" component={BlacklistScreen} options={{ header: (props) => <ModalTitle {...props}/>}}/>
+        <Stack.Screen name="Blacklist" component={BlacklistScreen} options={{headerShown: false}}/>
       </Stack.Group>
       <Stack.Group>
         <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false}} />
