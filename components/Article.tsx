@@ -61,14 +61,14 @@ const articleList: IArticle[] = [
 export function Article(props: any) {
     const navigation = useNavigation();
 
-    function onPress() {
+    function openArticle() {
         console.log('Pressed');
         navigation.navigate('Article', {id: props.id, title: props.title, text: props.text, logo: props.logo});
     }
 
     return (
-        <Pressable onPress={onPress}>
-            <View style={{ margin: '5px' }}>
+        <Pressable onPress={openArticle}>
+            <View style={{ margin: 5 }}>
                 <Image source={{ uri: props.logo }} style={{ minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16 }} />
                 <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{props.title}</Text>
                 <Text numberOfLines={3}>{props.text}</Text>
@@ -100,7 +100,6 @@ export const FilterOutExclussions = (exclussions: string[]): IArticle[] => {
 
         if (!exclussions.some(word => article.title.toLowerCase().includes(word.toLowerCase()))) {
             curratedArticles.push(article);
-            console.log(article.id + ' ' + article.title);
         }
     })
 
