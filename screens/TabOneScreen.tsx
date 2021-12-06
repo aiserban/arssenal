@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, StyleSheet, ScrollView } from 'react-native';
+import { getFeed } from '../parser/parser';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -18,7 +19,8 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           alert('something');
           }}
           title="Button"/>
-      <ScrollView>{RenderCurratedArticles()}</ScrollView>
+      {/* <ScrollView>{RenderCurratedArticles()}</ScrollView> */}
+      <RenderCurratedArticles></RenderCurratedArticles>
     </View>
   );
 }
