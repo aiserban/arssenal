@@ -88,7 +88,7 @@ export const ArticleList = (props: any) => {
     const doSomething = () => {
         Promise.resolve(FilterOutExclussions(Exclussions)).then(articles => { setList(articles) });
     }
-    doSomething();
+    setTimeout(() => { doSomething() }, 10000);     // decolam
     return (
         <ScrollView>
             {articleList.map(article => {
@@ -96,19 +96,6 @@ export const ArticleList = (props: any) => {
             })}
         </ScrollView>
     )
-
-    //     useEffect(() => {
-    //         setList(() =>{} Promise.resolve(FilterOutExclussions(Exclussions).then(articleList => {
-    //             return (
-    //                 <View>
-    //                     {articleList.map(article => {
-    //                         return (<Article key={article.id} title={article.title} text={article.description} />)
-    //                     })}
-    //                 </View>
-    //             )
-    //         })
-    //         )})
-    // });
 }
 
 export const FilterOutExclussions = async (exclussions: string[]): Promise<FeedItem[]> => {
