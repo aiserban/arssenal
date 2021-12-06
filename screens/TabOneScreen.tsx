@@ -4,7 +4,7 @@ import { getFeed } from '../parser/parser';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { Article, RenderCurratedArticles, Exclussions } from '../components/Article';
+import { Article, ArticleList, Exclussions } from '../components/Article';
 import { RootTabScreenProps } from '../types';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
@@ -19,8 +19,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'
           alert('something');
           }}
           title="Button"/>
-      {/* <ScrollView>{RenderCurratedArticles()}</ScrollView> */}
-      <RenderCurratedArticles></RenderCurratedArticles>
+      <ArticleList></ArticleList>
     </View>
   );
 }

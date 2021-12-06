@@ -81,8 +81,8 @@ export function Article(props: any) {
     )
 }
 
-export const RenderCurratedArticles = (props: any) => {
-    const [list, setList] = useState<FeedItem[]>([]);
+export const ArticleList = (props: any) => {
+    const [articleList, setList] = useState<FeedItem[]>([]);
 
 
     const doSomething = () => {
@@ -91,7 +91,7 @@ export const RenderCurratedArticles = (props: any) => {
     doSomething();
     return (
         <ScrollView>
-            {list.map(article => {
+            {articleList.map(article => {
                 return (<Article key={article.id} title={article.title} text={article.description} />)
             })}
         </ScrollView>
