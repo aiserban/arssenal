@@ -23,9 +23,10 @@ export default function BlacklistScreen({ route, navigation, props }: any) {
     }
 
     const renderWords = (words: string[]) => {
-        return (<View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            {words.map(word => {
-                return <Text onPress={() => wordClicked(word)}>{word} </Text>
+        return (
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            {words.map((word, index) => {
+                return <Text key={index} onPress={() => wordClicked(word)}>{word} </Text>
             })}
         </View>
         )
