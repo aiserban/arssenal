@@ -10,7 +10,7 @@ import { FeedItem } from 'react-native-rss-parser';
 
 
 export const getFeed = () => {
-    return fetch('https://hotnews.ro/rss')
+    return fetch('https://digi24.ro/rss')
         .then(response => response.text())
         .then(responseData => rssParser.parse(responseData))
         .then(rss => {
