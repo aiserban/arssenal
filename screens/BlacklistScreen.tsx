@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StatusBar, StyleSheet, Platform, PlatformColor, Pressable, Button, TouchableHighlight } from 'react-native'
-import { IArticle } from '../components/Article';
+import { Exclussions, IArticle } from '../components/Article';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
@@ -9,15 +9,14 @@ import { Text, View } from '../components/Themed';
 export default function BlacklistScreen({ route, navigation, props }: any) {
     const article: IArticle = route.params;
     let articleWords: string[] = article.title.split(' ');
-    let excludedWords: string[] = []    // TODO needs to be outside this function
 
     const wordClicked = (word: string) => {
         word = word.trim().toLowerCase();
-        if (!excludedWords.includes(word)) {
-            excludedWords.push(word.trim());
+        if (!Exclussions.includes(word)) {
+            Exclussions.push(word.trim().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,""));
         }
         console.log('Pressed word ' + word);
-        excludedWords.forEach(w => {
+        Exclussions.forEach(w => {
             console.log(w);
         })
     }

@@ -114,8 +114,8 @@ export const FilterOutExclussions = async (exclussions: string[]): Promise<FeedI
     return curratedArticles;
 }
 
-export var Exclussions = [
-    'Omicron',
-    'Loteria',
-    'Covid'
+export var Exclussions: string[] = [
+    // 'Omicron',
+    // 'Loteria',
+    // 'Covid'
 ]
