@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 import { Article, ArticleList, Exclussions } from '../components/Article';
 import { RootTabScreenProps } from '../types';
 
-export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function ArticleListScreen({ navigation }: RootTabScreenProps<'Articles'>) {
   return (
     <View style={styles.container}>
       {/* <Text style={styles.title}>Tab One</Text>
