@@ -4,7 +4,7 @@ import { View, Text, Image, TouchableHighlight, Pressable, ScrollView } from "re
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ArticleScreen from "../screens/ArticleScreen";
-import { getFeed } from "../parser/parser";
+import { getFeedItems } from "../parser/parser";
 import { FeedItem } from "react-native-rss-parser";
 
 export interface IArticle {
@@ -52,11 +52,13 @@ export const ArticleList = (props: any) => {
     )
 }
 
+// todo do nothing if no exclussions
 export const FilterOutExclussions = async (exclussions: string[]): Promise<FeedItem[]> => {
-    const articleList = await getFeed();
+    const url = "digi24.ro/rss";
+    const articleList = await getFeedItems(url);    // todo should not get items in exclussions, need to filter them after we have a list
     const curratedArticles: FeedItem[] = []
 
-    articleList.forEach(article => {
+    articleList.forEach((article: FeedItem) => {
         const words = article.title.trim().split(' ');
         console.log(words);
 

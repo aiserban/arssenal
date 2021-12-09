@@ -20,7 +20,6 @@ import ArticleScreen from '../screens/ArticleScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import BlacklistScreen from '../screens/BlacklistScreen';
-import ModalTitle from '../components/ModalTitle';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -44,11 +43,13 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'transparentModal', animation: 'fade' }} >
+        <Stack.Screen name="Blacklist" component={BlacklistScreen} options={{ headerShown: false }} />
+      </Stack.Group>
+      <Stack.Group screenOptions={{presentation: 'modal'}}>
         <Stack.Screen name="Modal" component={ModalScreen} />
-        <Stack.Screen name="Blacklist" component={BlacklistScreen} options={{headerShown: false}}/>
       </Stack.Group>
       <Stack.Group>
-        <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false}} />
+        <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false }} />
       </Stack.Group>
     </Stack.Navigator>
   );
