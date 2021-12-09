@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, StyleSheet, ScrollView } from 'react-native';
-import { getFeed } from '../parser/parser';
+import { getFeedItems } from '../parser/parser';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
