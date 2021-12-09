@@ -1,33 +1,45 @@
 import * as React from "react"
-import { Text, View, TextInput, Button } from "react-native"
+import { Text, View, TextInput, Button, Pressable } from "react-native"
 import axios from "axios"
 import { getFeed, getFeedItems } from "../parser/parser";
+import { FeedListUrls } from "./Article";
+import { useEffect } from "react";
 
 export const AddFeed = (props: any) => {
-    const [text, onChangeText] = React.useState('');
+    const [url, onChangeText] = React.useState('');
     const [result, setResult] = React.useState('');
+    const [buttonDisabled, disableButton] = React.useState(true);
 
-    const SearchForFeed = () => {
-        // todo check if valid url
-        // get
-        // check content/type 
-
-        
-        getFeed(text)
-            .then(rssTitle => setResult(rssTitle))
+    const addFeed = () => {
+        if (!FeedListUrls.includes(url.toLowerCase())) {
+            FeedListUrls.push(url.toLowerCase());
+        };
+        console.log(FeedListUrls);
+    }
+    
+    const search = () => {
+        disableButton(true);
+        getFeed(url)
+            .then(rssTitle => {
+                setResult(rssTitle);
+                disableButton(false);
+            })
             .catch(err => { 
-                console.log(err);
-                setResult(err)
+                disableButton(true);
+                setResult('');
             });
     }
 
     return(
         <View>
-            <TextInput placeholder={"Feed or website URL"} autoCorrect={false} onChangeText={onChangeText}></TextInput>
-            <Button title='Search' onPress={SearchForFeed}></Button>
+            <TextInput placeholder={"Feed or website URL"} autoCorrect={false} autoCapitalize={'none'} onChangeText={onChangeText}></TextInput>
+            <Button title='Search' onPress={search}></Button>
             <View>
-                <Text>{result}</Text>
+                <Pressable>
+                    <Text>{result}</Text>
+                </Pressable>
             </View>
+            <Button onPress={addFeed} title={'Add feed'} disabled={buttonDisabled}></Button>
         </View>
     )
 }
