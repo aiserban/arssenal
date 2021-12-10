@@ -27,6 +27,7 @@ export function Article(props: any) {
                 <Image source={{ uri: props.logo }} style={{ minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16 }} />
                 <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{props.title}</Text>
                 <Text numberOfLines={3}>{props.text}</Text>
+                <Text>{props.link}</Text>
             </View>
         </Pressable>
 
@@ -38,7 +39,7 @@ export const ArticleList = (props: any) => {
     const [articleList, setList] = useState<FeedItem[]>([]);
 
     const doSomething = () => {
-        Promise.resolve(FilterOutExclussions(Exclussions)).then(articles => { setList(articles) });
+        Promise.resolve(FilterOutExclussions()).then(articles => { setList(articles); });
     }
 
     setTimeout(() => { doSomething() }, 10000);     // decolam
@@ -46,33 +47,42 @@ export const ArticleList = (props: any) => {
     return (
         <ScrollView>
             {articleList.map(article => {
-                return (<Article key={article.id} title={article.title} text={article.description} />)
+                return (<Article key={article.id} title={article.title} text={article.description} link={article.links[0].url}/>)
             })}
         </ScrollView>
     )
 }
 
-export const FilterOutExclussions = async (exclussions: string[]): Promise<FeedItem[]> => {
-    const url = "https://digi24.ro/rss";
-    const articleList = await getFeedItems(url);    // todo should not get items in exclussions, need to filter them after we have a list
-    const curratedArticles: FeedItem[] = []
+    ;    // todo should not get items in exclussions, need to filter them after we have a list
+export const FilterOutExclussions = async (): Promise<FeedItem[]> => {
+    let curratedArticles: FeedItem[] = []
 
-    if (exclussions.length === 0){
-        return articleList;
-    }
+    for (let index = 0; index < FeedListUrls.length; index++) {
+        const url = FeedListUrls[index];
 
-    articleList.forEach((article: FeedItem) => {
-        const words = article.title.trim().split(' ');
-        console.log(words);
-
-        if (!exclussions.some(word => article.title.toLowerCase().includes(word.toLowerCase()))) {
-            curratedArticles.push(article);
+        let items = await getFeedItems(url);
+        if (Exclussions.length !== 0) {
+            items.forEach((article: FeedItem) => {
+                // TODO should split words first
+                if (!Exclussions.some(word => article.title.toLowerCase().includes(word.toLowerCase()))) {
+                    curratedArticles.push(article);
+                }
+            })
         }
-    })
-    console.log(curratedArticles);
+        else {
+            curratedArticles = curratedArticles.concat(items);
+        }
+
+    }
+    console.log(curratedArticles[0].published);
+    console.log(new Date(curratedArticles[0].published));
+    curratedArticles.sort((a, b) => {
+        return new Date(b.published).getTime() - new Date(a.published).getTime();
+    });
+
     return curratedArticles;
 }
 
 export var Exclussions: string[] = []
 export var FeedList: Feed[] = []
-export var FeedListUrls: string[] = []
+export var FeedListUrls: string[] = ['http://hotnews.ro/rss', 'http://digi24.ro/rss']
