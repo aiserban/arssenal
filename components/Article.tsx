@@ -7,27 +7,27 @@ import ArticleScreen from "../screens/ArticleScreen";
 import { getFeedItems } from "../parser/parser";
 import { Feed, FeedItem } from "react-native-rss-parser";
 
-export interface IArticle {
-    id: number,
-    title: string,
-    text: string,
-    logo: string
-}
+// export interface IArticle {
+//     id: number,
+//     title: string,
+//     text: string,
+//     logo: string
+// }
 
 export function Article(props: any) {
     const navigation = useNavigation();
+    const article: FeedItem = props.article;
 
     function openArticle() {
-        navigation.navigate('Article', { id: props.id, title: props.title, text: props.text, logo: props.logo });
+        navigation.navigate('Article', article);
     }
 
     return (
         <Pressable onPress={openArticle}>
             <View style={{ margin: 5 }}>
                 <Image source={{ uri: props.logo }} style={{ minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16 }} />
-                <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{props.title}</Text>
-                <Text numberOfLines={3}>{props.text}</Text>
-                <Text>{props.link}</Text>
+                <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{article.title}</Text>
+                <Text numberOfLines={3}>{article.description}</Text>
             </View>
         </Pressable>
 
@@ -47,7 +47,7 @@ export const ArticleList = (props: any) => {
     return (
         <ScrollView>
             {articleList.map(article => {
-                return (<Article key={article.id} title={article.title} text={article.description} link={article.links[0].url}/>)
+                return (<Article key={article.id} article={article}/>)
             })}
         </ScrollView>
     )
@@ -85,4 +85,4 @@ export const FilterOutExclussions = async (): Promise<FeedItem[]> => {
 
 export var Exclussions: string[] = []
 export var FeedList: Feed[] = []
-export var FeedListUrls: string[] = ['http://hotnews.ro/rss', 'http://digi24.ro/rss']
+export var FeedListUrls: string[] = ['http://hotnews.ro/rss', 'http://digi24.ro/rss', 'http://sport.ro/rss']

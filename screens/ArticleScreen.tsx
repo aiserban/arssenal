@@ -2,21 +2,19 @@ import * as React from 'react';
 import { ScrollView, Text, View, Image, StyleSheet, Pressable } from 'react-native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { IArticle } from '../components/Article';
+import { FeedItem } from 'react-native-rss-parser';
+import WebView from 'react-native-webview';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// import { IArticle } from '../components/Article';
 
-export default function ArticleScreen({ route, navigation }: any) {
-    const article: IArticle = route.params;
+export default function ArticleScreen({route, navigation}: any) {
+    const article: FeedItem = route.params;
 
     return (
-        <ScrollView style={{ margin: 7, marginTop: 90 }}>
-            <View>
-                <Text style={styles.title} onLongPress={openBlacklistScreen}>{article.title} </Text>
-
-            </View>
-
-            <Text>{article.text}</Text>
-        </ScrollView>
-    );
+      <SafeAreaView style={{ flex: 1 }}>
+        <WebView source={{ uri: article.links[0].url}} mediaPlaybackRequiresUserAction={true} />
+      </SafeAreaView>
+    )
 
     function openBlacklistScreen(){
       navigation.navigate('Blacklist', article);
