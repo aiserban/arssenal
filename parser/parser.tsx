@@ -20,5 +20,4 @@ export const getFeed = async (url: string) => {
     return fetch(url)
             .then((response) => response.text())
             .then((responseData) => rssParser.parse(responseData))
-            .then((rss) => rss.title);
 }
