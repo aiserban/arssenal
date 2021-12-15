@@ -21,9 +21,19 @@ export function Article(props: any) {
         navigation.navigate('Article', feedItem);
     }
 
+    // TODO Handle days other day today
     const computeDate = () => {
         const date = new Date(published);
-        setDisplayPublished(date.getHours() + ':' + date.getMinutes());
+        const hours = date.getHours();
+        let minutes;
+
+        if (date.getMinutes() < 10){
+            minutes = '0' + date.getMinutes();
+        }
+        else {
+            minutes = date.getMinutes();
+        }
+        setDisplayPublished(hours + ':' + minutes);
     }
     
     useEffect(computeDate, []);
