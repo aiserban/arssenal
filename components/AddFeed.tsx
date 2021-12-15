@@ -10,6 +10,7 @@ export const AddFeed = (props: any) => {
     const [result, setResult] = React.useState('');
     const [buttonDisabled, disableButton] = React.useState(true);
 
+    // TODO Check if the feed exists as either HTTP or HTTPS before adding
     const addFeed = () => {
         if (!FeedListUrls.includes(url.toLowerCase())) {
             FeedListUrls.push(url.toLowerCase());
@@ -20,8 +21,8 @@ export const AddFeed = (props: any) => {
     const search = () => {
         disableButton(true);
         getFeed(url)
-            .then(rssTitle => {
-                setResult(rssTitle);
+            .then(feed => {
+                setResult(feed.title);
                 disableButton(false);
             })
             .catch(err => { 

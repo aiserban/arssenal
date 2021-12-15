@@ -64,6 +64,8 @@ export const ArticleList = (props: any) => {
         getData();
     }, [])
 
+
+    // TODO Sort by published
     return (
         <ScrollView>
         {feedList.map(feed => {
