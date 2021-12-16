@@ -4,6 +4,7 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -83,10 +84,10 @@ function BottomTabNavigator() {
               style={({ pressed }) => ({
                 opacity: pressed ? 0.5 : 1,
               })}>
-              <FontAwesome
-                name="plus"
+              <Ionicons
+                name="add"
                 size={25}
-                color={Colors[colorScheme].text}
+                color={Colors[colorScheme].tabIconSelected}
                 style={{ marginRight: 15 }}
               />
             </Pressable>
