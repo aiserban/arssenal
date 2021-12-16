@@ -12,8 +12,9 @@ import Colors from "../constants/Colors";
 export function Article(props: any) {
     const navigation = useNavigation();
     const feedItem: FeedItem = props.item;
-    const logo = props.logo;
+    const [logo, setLogo] = useState<string>();
     const source = props.source;
+    const sourceUrl = props.sourceUrl;
     const published = props.item.published;
     const [displayPublished, setDisplayPublished] = useState('');
 
@@ -36,7 +37,17 @@ export function Article(props: any) {
         setDisplayPublished(hours + ':' + minutes);
     }
 
+    const computeFavicon = () => {
+        if (logo === undefined){    // TODO Should cache icon
+            setLogo('https://www.google.com/s2/favicons?domain=' + sourceUrl);
+        }
+        else {
+            setLogo(props.logo);
+        }
+    }
+
     useEffect(computeDate, []);
+    useEffect(computeFavicon, []);
 
     function openBlacklistScreen(){
         navigation.navigate('Blacklist', feedItem);
@@ -96,7 +107,7 @@ export const ArticleList = (props: any) => {
             { feedList.map(feed => {
                 return feed.items.map(item => {
                     return (
-                        <Article key={item.id} item={item} source={feed.title} logo={feed.image.url}></Article>
+                        <Article key={item.id} item={item} source={feed.title} sourceUrl={feed.links[0].url} logo={feed.image.url}></Article>
                     )
                 })
             })}
