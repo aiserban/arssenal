@@ -1,6 +1,6 @@
 import { useLinkProps, useNavigation } from "@react-navigation/native";
 import React, { Component, useState, useEffect } from "react";
-import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, PlatformColor } from "react-native";
+import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, RefreshControl } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ArticleScreen from "../screens/ArticleScreen";
@@ -59,6 +59,7 @@ export function Article(props: any) {
 export const ArticleList = (props: any) => {
     const [feedList, setFeedList] = useState<Feed[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isRefreshing, setIsRefreshing] = useState(false);
 
     const getData = async () => {
         let feeds: Feed[] = [];
@@ -72,6 +73,12 @@ export const ArticleList = (props: any) => {
         console.log('Feed list has been updated.');
     }
 
+    const refresh = async () => {
+        setIsRefreshing(true);
+        await getData();
+        setIsRefreshing(false);
+    }
+
     useEffect(() => {
         getData();
     }, [])
@@ -81,7 +88,7 @@ export const ArticleList = (props: any) => {
     return (
         <>
         { isLoading && <ActivityIndicator size='large' style={{ flex: 1, alignSelf: 'center', justifyContent: 'center'}}></ActivityIndicator>}
-        <ScrollView>
+        <ScrollView refreshControl={<RefreshControl refreshing={ isRefreshing } onRefresh={refresh}></RefreshControl>}>
             { feedList.map(feed => {
                 return feed.items.map(item => {
                     return (
