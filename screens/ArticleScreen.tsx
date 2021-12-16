@@ -8,16 +8,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 // import { IArticle } from '../components/Article';
 
 export default function ArticleScreen({route, navigation}: any) {
-    const article: FeedItem = route.params;
+    const feedItem: FeedItem = route.params;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <WebView source={{ uri: article.links[0].url}} mediaPlaybackRequiresUserAction={true} />
+        <WebView source={{ uri: feedItem.links[0].url}} mediaPlaybackRequiresUserAction={true} />
       </SafeAreaView>
     )
 
     function openBlacklistScreen(){
-      navigation.navigate('Blacklist', article);
+      navigation.navigate('Blacklist', feedItem);
     }
 }
 

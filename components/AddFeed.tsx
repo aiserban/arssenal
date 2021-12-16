@@ -3,12 +3,12 @@ import { Text, View, TextInput, Button, Pressable } from "react-native"
 import axios from "axios"
 import { getFeed, getFeedItems } from "../parser/parser";
 import { FeedListUrls } from "./Article";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export const AddFeed = (props: any) => {
-    const [url, onChangeText] = React.useState('');
-    const [result, setResult] = React.useState('');
-    const [buttonDisabled, disableButton] = React.useState(true);
+    const [url, onChangeText] = useState('');
+    const [result, setResult] = useState('');
+    const [buttonDisabled, disableButton] = useState(true);
 
     // TODO Check if the feed exists as either HTTP or HTTPS before adding
     const addFeed = () => {

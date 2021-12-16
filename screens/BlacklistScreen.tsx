@@ -1,13 +1,14 @@
 import * as React from 'react'
 import { StatusBar, StyleSheet, Platform, PlatformColor, Pressable, Button, TouchableHighlight } from 'react-native'
-import { Exclussions, IArticle } from '../components/Article';
+import { FeedItem } from 'react-native-rss-parser';
+import { Exclussions } from '../components/Article';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
 
-export default function BlacklistScreen({ route, navigation, props }: any) {
-    const article: IArticle = route.params;
+export default function BlacklistScreen({ route, navigation }: any) {
+    const article: FeedItem = route.params;
     let articleWords: string[] = article.title.split(' ');
 
     const wordClicked = (word: string) => {

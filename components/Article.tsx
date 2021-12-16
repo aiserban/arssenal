@@ -38,8 +38,12 @@ export function Article(props: any) {
 
     useEffect(computeDate, []);
 
+    function openBlacklistScreen(){
+        navigation.navigate('Blacklist', feedItem);
+      }
+
     return (
-        <Pressable onPress={openArticle} style={{ marginBottom: 10 }}>
+        <Pressable onPress={openArticle} onLongPress={openBlacklistScreen} style={{ marginBottom: 10 }}>
             <View style={{ margin: 5 }}>
                 <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{feedItem.title.trim()}</Text>
                 <Text numberOfLines={3}>{feedItem.description.trim()}</Text>
