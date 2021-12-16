@@ -17,7 +17,7 @@ export function Article(props: any) {
     const published = props.item.published;
     const [displayPublished, setDisplayPublished] = useState('');
 
-    function openArticle() {
+    const openArticle = () => {
         navigation.navigate('Article', feedItem);
     }
 
