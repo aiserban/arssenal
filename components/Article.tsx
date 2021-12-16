@@ -1,6 +1,6 @@
 import { useLinkProps, useNavigation } from "@react-navigation/native";
 import React, { Component, useState, useEffect } from "react";
-import { View, Text, Image, TouchableHighlight, Pressable, ScrollView, PlatformColor } from "react-native";
+import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, PlatformColor } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ArticleScreen from "../screens/ArticleScreen";
@@ -27,7 +27,7 @@ export function Article(props: any) {
         const hours = date.getHours();
         let minutes;
 
-        if (date.getMinutes() < 10){
+        if (date.getMinutes() < 10) {
             minutes = '0' + date.getMinutes();
         }
         else {
@@ -35,7 +35,7 @@ export function Article(props: any) {
         }
         setDisplayPublished(hours + ':' + minutes);
     }
-    
+
     useEffect(computeDate, []);
 
     return (
@@ -43,10 +43,10 @@ export function Article(props: any) {
             <View style={{ margin: 5 }}>
                 <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{feedItem.title.trim()}</Text>
                 <Text numberOfLines={3}>{feedItem.description.trim()}</Text>
-                <View style={{ flex: 1, flexDirection: 'row', marginTop: 4, backgroundColor: '#eeeeee'}}>
+                <View style={{ flex: 1, flexDirection: 'row', marginTop: 4, backgroundColor: '#eeeeee' }}>
                     <Image source={{ uri: logo }} style={{ flex: 1, minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16, marginRight: 10 }} />
-                    <Text style={{fontWeight: 'bold', flex: 1}}>{source}</Text>
-                    <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end', marginRight: 25}}>{ displayPublished }</Text>
+                    <Text style={{ fontWeight: 'bold', flex: 1 }}>{source}</Text>
+                    <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end', marginRight: 25 }}>{displayPublished}</Text>
                 </View>
             </View>
         </Pressable>
@@ -58,15 +58,17 @@ export function Article(props: any) {
 
 export const ArticleList = (props: any) => {
     const [feedList, setFeedList] = useState<Feed[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const getData = async () => {
         let feeds: Feed[] = [];
-        for (let i=0; i < FeedListUrls.length; i++){
-                await getFeed(FeedListUrls[i]).then(feed => {
-                    feeds = feeds.concat(feed);
-                })
+        for (let i = 0; i < FeedListUrls.length; i++) {
+            await getFeed(FeedListUrls[i]).then(feed => {
+                feeds = feeds.concat(feed);
+            })
         }
         setFeedList(feeds);
+        setIsLoading(false);
         console.log('Feed list has been updated.');
     }
 
@@ -77,15 +79,18 @@ export const ArticleList = (props: any) => {
 
     // TODO Sort by published
     return (
+        <>
+        { isLoading && <ActivityIndicator size='large' style={{ flex: 1, alignSelf: 'center', justifyContent: 'center'}}></ActivityIndicator>}
         <ScrollView>
-        {feedList.map(feed => {
-            return feed.items.map(item => {
-                return (
-                    <Article key={item.id} item={item} source={feed.title} logo={feed.image.url}></Article>
-                )
-            })
-        })}
+            { feedList.map(feed => {
+                return feed.items.map(item => {
+                    return (
+                        <Article key={item.id} item={item} source={feed.title} logo={feed.image.url}></Article>
+                    )
+                })
+            })}
         </ScrollView>
+        </>
     )
 }
 
