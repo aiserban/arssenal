@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { ActivityIndicator, ScrollView, RefreshControl } from "react-native";
 import { Feed, FeedItem } from "react-native-rss-parser";
+import { FeedListUrls, Exclussions } from "../data/data";
 import { getFeed, getFeedItems } from "../parser/parser";
-import {Article} from "./Article";
+import { Article } from "./Article";
 
 export const ArticleList = (props: any) => {
     const [feedList, setFeedList] = useState<Feed[]>([]);
@@ -78,7 +79,3 @@ export const FilterOutExclussions = async (): Promise<FeedItem[]> => {
 
     return curratedArticles;
 }
-
-export var Exclussions: string[] = []
-export var FeedList: Feed[] = []
-export var FeedListUrls: string[] = ['http://hotnews.ro/rss', 'http://digi24.ro/rss', 'http://sport.ro/rss']
