@@ -2,7 +2,7 @@ import * as React from "react"
 import { Text, View, TextInput, Button, Pressable } from "react-native"
 import axios from "axios"
 import { getFeed, getFeedItems } from "../parser/parser";
-import { FeedListUrls } from "./Article";
+import { FeedListUrls } from "./ArticleList";
 import { useEffect, useState } from "react";
 
 export const AddFeed = (props: any) => {

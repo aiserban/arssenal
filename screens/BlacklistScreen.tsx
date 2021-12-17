@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StatusBar, StyleSheet, Platform, PlatformColor, Pressable, Button, TouchableHighlight } from 'react-native'
 import { FeedItem } from 'react-native-rss-parser';
-import { Exclussions } from '../components/Article';
+import { Exclussions } from '../components/ArticleList';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';

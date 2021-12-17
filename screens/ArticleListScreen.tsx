@@ -4,7 +4,7 @@ import { getFeedItems } from '../parser/parser';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import { Article, ArticleList, Exclussions } from '../components/Article';
+import { ArticleList, Exclussions } from '../components/ArticleList';
 import { RootTabScreenProps } from '../types';
 
 export default function ArticleListScreen({ navigation }: RootTabScreenProps<'Articles'>) {
