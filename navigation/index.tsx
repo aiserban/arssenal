@@ -46,7 +46,7 @@ function RootNavigator() {
       <Stack.Group screenOptions={{ presentation: 'transparentModal', animation: 'fade' }} >
         <Stack.Screen name="Blacklist" component={BlacklistScreen} options={{ headerShown: false }} />
       </Stack.Group>
-      <Stack.Group screenOptions={{presentation: 'modal'}}>
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
       <Stack.Group>
@@ -92,6 +92,13 @@ function BottomTabNavigator() {
               />
             </Pressable>
           ),
+          headerLeft: () => (
+            <Pressable onPress={() => navigation.navigate('Modal')} style={({ pressed }) => ({
+              opacity: pressed ? 0.5 : 1,
+            })}>
+              <Ionicons name='cog-outline' style={{ marginLeft: 25 }} color={Colors[colorScheme].tabIconSelected} size={25} />
+            </Pressable>
+        )
         })}
       />
       <BottomTab.Screen

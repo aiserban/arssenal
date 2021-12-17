@@ -16,6 +16,7 @@ export default function ArticleScreen({route, navigation}: any) {
       </SafeAreaView>
     )
 
+    // TODO either use this with reader view or something, or remove it
     function openBlacklistScreen(){
       navigation.navigate('Blacklist', feedItem);
     }

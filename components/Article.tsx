@@ -1,6 +1,6 @@
 import { useLinkProps, useNavigation } from "@react-navigation/native";
 import React, { Component, useState, useEffect } from "react";
-import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, RefreshControl } from "react-native";
+import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, RefreshControl, PlatformColor } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ArticleScreen from "../screens/ArticleScreen";
@@ -58,7 +58,7 @@ export function Article(props: any) {
             <View style={{ margin: 5 }}>
                 <Text style={{ fontWeight: 'bold' }} numberOfLines={2}>{feedItem.title.trim()}</Text>
                 <Text numberOfLines={3}>{feedItem.description.trim()}</Text>
-                <View style={{ flex: 1, flexDirection: 'row', marginTop: 4, backgroundColor: '#eeeeee' }}>
+                <View style={{ flex: 1, flexDirection: 'row', marginTop: 4, backgroundColor: PlatformColor('systemOrange') }}>
                     <Image source={{ uri: logo }} style={{ flex: 1, minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16, marginRight: 10 }} />
                     <Text style={{ fontWeight: 'bold', flex: 1 }}>{source}</Text>
                     <Text style={{ fontWeight: 'bold', alignSelf: 'flex-end', marginRight: 25 }}>{displayPublished}</Text>

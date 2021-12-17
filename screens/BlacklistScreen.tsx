@@ -9,7 +9,7 @@ import { Text, View } from '../components/Themed';
 
 export default function BlacklistScreen({ route, navigation }: any) {
     const article: FeedItem = route.params;
-    let articleWords: string[] = article.title.split(' ');
+    let articleWords: string[] = article.title.trim().split(' ');
 
     const wordClicked = (word: string) => {
         word = word.trim().toLowerCase();
