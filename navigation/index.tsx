@@ -15,7 +15,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import ArticleListScreen from '../screens/ArticleListScreen';
+import UnreadScreen from '../screens/UnreadScreen';
 import HiddenScreen from '../screens/HiddenScreen';
 import ArticleScreen from '../screens/ArticleScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -50,8 +50,9 @@ function RootNavigator() {
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>
       <Stack.Group>
-        <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false }} />
+        <Stack.Screen name='Unread' component={UnreadScreen} options={{ headerTitle: '', headerShown: false }} />
         <Stack.Screen name='Hidden' component={HiddenScreen} options={{ headerTitle: '', headerShown: false }} />
+        <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -69,15 +70,15 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Articles"
+      initialRouteName="Unread"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="Articles"
-        component={ArticleListScreen}
-        options={({ navigation }: RootTabScreenProps<'Articles'>) => ({
-          title: 'Articles',
+        name='Unread'
+        component={UnreadScreen}
+        options={({ navigation }: RootTabScreenProps<'Unread'>) => ({
+          title: 'Unread',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
           headerRight: () => (
             <Pressable

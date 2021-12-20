@@ -28,10 +28,6 @@ export const ArticleList = (props: any) => {
         getData();
     }, [])
 
-
-
-
-    // TODO Sort by published
     return (
         <>
         { isLoading && <ActivityIndicator size='large' style={{ flex: 1, alignSelf: 'center', justifyContent: 'center'}}></ActivityIndicator>}

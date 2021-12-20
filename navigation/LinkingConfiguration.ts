@@ -17,7 +17,7 @@ const linking: LinkingOptions<RootStackParamList> = {
         screens: {
           Articles: {
             screens: {
-              Articles: 'articles'
+              Unread: 'unread'
             },
           },
           Hidden: {

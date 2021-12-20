@@ -7,7 +7,7 @@ import { Text, View } from '../components/Themed';
 import { ArticleList } from '../components/ArticleList';
 import { RootTabScreenProps } from '../types';
 
-export default function ArticleListScreen({ navigation }: RootTabScreenProps<'Articles'>) {
+export default function UnreadScreen({ navigation }: RootTabScreenProps<'Articles'>) {
   return (
     <View style={styles.container}>
       <ArticleList/>

@@ -22,9 +22,10 @@ export type RootStackParamList = {
   Modal: undefined;
   NotFound: undefined;
   Item: FeedItemModel;
-  Blacklist: FeedItem;
-  Article: FeedItem;
-  Hidden: undefined
+  Blacklist: FeedItemModel;
+  Article: FeedItemModel;
+  Hidden: undefined;
+  Unread: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -35,6 +36,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 export type RootTabParamList = {
   Articles: undefined;
   Hidden: undefined;
+  Unread: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<
