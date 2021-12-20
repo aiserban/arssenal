@@ -4,7 +4,6 @@ import { View, Text, Image, ActivityIndicator, Pressable, ScrollView, RefreshCon
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ArticleScreen from "../screens/ArticleScreen";
-import { getFeed, getFeedItems } from "../parser/parser";
 import { Feed, FeedItem } from "react-native-rss-parser";
 import Colors from "../constants/Colors";
 import { ReadList } from "../data/data";
@@ -68,9 +67,11 @@ export const Article = (props: any) => {
                 <Text style={ [styles.title, isRead? styles.read : {}] } numberOfLines={2}>{feedItem.title.trim()}</Text>
                 <Text style={ [styles.text, isRead? styles.read : {}] } numberOfLines={3}>{feedItem.description.trim()}</Text>
                 <View style={ styles.info }>
-                    <Image source={{ uri: logo }} style={ styles.image } />
-                    <Text style={ styles.source }>{source}</Text>
-                    <Text style={ styles.date }>{displayPublished}</Text>
+                    <Image source={{ uri: logo }} style={ styles.logo } />
+                    <View style={ styles.sourceDateContainer}>
+                        <Text style={ styles.source }>{source}</Text>
+                        <Text style={ styles.date }>{displayPublished}</Text>
+                    </View>
                 </View>
             </View>
         </Pressable>
@@ -83,8 +84,9 @@ const styles = StyleSheet.create({
     title: { fontFamily: 'Avenir', fontWeight: '700' },
     text: { fontFamily: 'Avenir' },
     read: { color: PlatformColor('systemGray')},
-    image: { flex: 1, minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16, marginHorizontal: 8, alignSelf: 'center' },
-    source: { fontFamily: 'Avenir', fontWeight: '100', color: 'white', flex: 1 },
+    logo: { flex: 1, minHeight: 16, minWidth: 16, maxHeight: 16, maxWidth: 16, height: 16, width: 16, marginRight: 4, alignSelf: 'center' },
+    source: { fontFamily: 'Avenir', fontWeight: '100', color: 'white', flex: 1, marginLeft: 4 },
     date: { fontFamily: 'Avenir', fontWeight: '100', color: 'white', alignSelf: 'flex-end', marginRight: 25 },
-    info: { flex: 1, flexDirection: 'row', marginTop: 4, backgroundColor: PlatformColor('systemBlue') }
+    info: { flex: 1, flexDirection: 'row', marginTop: 4 },
+    sourceDateContainer: { flex: 1, flexDirection: 'row', backgroundColor: PlatformColor('systemBlue') }
 })
