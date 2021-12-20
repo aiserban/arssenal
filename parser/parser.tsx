@@ -17,7 +17,7 @@ const getFeedItems = async (url: string) => {
     .then((rss) => rss.items);
 }
 
-export const getFeed = async (url: string) => {
+const getFeed = async (url: string) => {
     return fetch(url)
             .then((response) => response.text())
             .then((responseData) => rssParser.parse(responseData))
@@ -41,7 +41,6 @@ export const getFeedItemModels = async (urls: string[])=> {
     // get all the articles in each feed and map them
     let feedItemModels: FeedItemModel[] = [];
     feeds.forEach(feed => {
-        console.log(feed.title);
         feedItemModels = feedItemModels.concat(feed.items.map(item => {
             const model: FeedItemModel = {
                 item: item,
