@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Text, View, TextInput, Button, Pressable } from "react-native"
 import axios from "axios"
-import { getFeed, getFeedItems } from "../parser/parser";
+import { getFeed } from "../parser/parser";
 import { FeedListUrls } from "../data/data";
 import { useEffect, useState } from "react";
 

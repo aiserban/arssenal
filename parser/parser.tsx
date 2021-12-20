@@ -17,7 +17,7 @@ const getFeedItems = async (url: string) => {
     .then((rss) => rss.items);
 }
 
-const getFeed = async (url: string) => {
+export const getFeed = async (url: string) => {
     return fetch(url)
             .then((response) => response.text())
             .then((responseData) => rssParser.parse(responseData))

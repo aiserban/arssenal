@@ -7,11 +7,12 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { CompositeScreenProps, NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { FeedItem } from 'react-native-rss-parser';
+import { FeedItemModel } from './models/FeedItemModel';
 
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {
-      item: FeedItem
+      item: FeedItemModel
     }
   }
 }
@@ -20,9 +21,10 @@ export type RootStackParamList = {
   Root: NavigatorScreenParams<RootTabParamList> | undefined;
   Modal: undefined;
   NotFound: undefined;
-  Item: FeedItem;
+  Item: FeedItemModel;
   Blacklist: FeedItem;
   Article: FeedItem;
+  Hidden: undefined
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -32,7 +34,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 
 export type RootTabParamList = {
   Articles: undefined;
-  TabTwo: undefined;
+  Hidden: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

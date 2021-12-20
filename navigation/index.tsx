@@ -16,7 +16,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import ArticleListScreen from '../screens/ArticleListScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import HiddenScreen from '../screens/HiddenScreen';
 import ArticleScreen from '../screens/ArticleScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
@@ -51,6 +51,7 @@ function RootNavigator() {
       </Stack.Group>
       <Stack.Group>
         <Stack.Screen name='Article' component={ArticleScreen} options={{ headerTitle: '', headerShown: false }} />
+        <Stack.Screen name='Hidden' component={HiddenScreen} options={{ headerTitle: '', headerShown: false }} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -102,10 +103,10 @@ function BottomTabNavigator() {
         })}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+        name="Hidden"
+        component={HiddenScreen}
         options={{
-          title: 'Tab Two',
+          title: 'Hidden',
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
