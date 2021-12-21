@@ -43,7 +43,12 @@ export const getFeedItemModels = async (urls: string[])=> {
     feeds.forEach(feed => {
         feedItemModels = feedItemModels.concat(feed.items.map(item => {
             const model: FeedItemModel = {
-                item: item,
+                item: (() => {
+                    let tmp = item;
+                    // some feeds don't provide a GUID field for items so we default to their url
+                    if (tmp.id === undefined) { tmp.id = item.links[0].url};
+                    return tmp;
+                })(),
                 parent: {
                     name: feed.title,
                     url: feed.links[0].url,

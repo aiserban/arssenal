@@ -44,6 +44,10 @@ export const Article = (props: any) => {
             minutes = date.getMinutes();
         }
         setDisplayPublished(hours + ':' + minutes);
+
+        if (item.item.id === undefined) {
+            console.log(item.parent.name);
+        }
     }
 
     const computeFavicon = () => {
