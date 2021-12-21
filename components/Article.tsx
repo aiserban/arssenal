@@ -17,7 +17,7 @@ export const Article = (props: any) => {
     const [logo, setLogo] = useState<string>();
     const source = props.source;
     const sourceUrl = props.sourceUrl;
-    const published = props.item.published;
+    const published = props.item.item.published;
     const [displayPublished, setDisplayPublished] = useState('');
     const [isRead, setIsRead] = useState(false);
 
