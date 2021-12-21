@@ -8,6 +8,7 @@
 import * as rssParser from 'react-native-rss-parser'
 import {FeedItemModel} from '../models/FeedItemModel'
 import { FeedItem, Feed } from 'react-native-rss-parser';
+import { insert, openDb } from '../db/arssDb';
 
 
 const getFeedItems = async (url: string) => {
@@ -65,5 +66,8 @@ export const getFeedItemModels = async (urls: string[])=> {
         return new Date(b.item.published).getTime() - new Date(a.item.published).getTime();
     })
 
+    feedItemModels.forEach(item => {
+        insert(item);
+    })
     return feedItemModels;
 }
