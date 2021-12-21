@@ -5,14 +5,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FeedItem } from 'react-native-rss-parser';
 import WebView from 'react-native-webview';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { FeedItemModel } from '../models/FeedItemModel';
 // import { IArticle } from '../components/Article';
 
 export default function ArticleScreen({route, navigation}: any) {
-    const feedItem: FeedItem = route.params;
+    const feedItem: FeedItemModel = route.params;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <WebView source={{ uri: feedItem.links[0].url}} mediaPlaybackRequiresUserAction={true} />
+        <WebView source={{ uri: feedItem.item.links[0].url}} mediaPlaybackRequiresUserAction={true} />
       </SafeAreaView>
     )
 

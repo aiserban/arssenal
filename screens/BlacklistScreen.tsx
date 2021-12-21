@@ -5,11 +5,12 @@ import { Exclussions } from '../data/data';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import { FeedItemModel } from '../models/FeedItemModel';
 
 
 export default function BlacklistScreen({ route, navigation }: any) {
-    const article: FeedItem = route.params;
-    let articleWords: string[] = article.title.trim().split(' ');
+    const article: FeedItemModel = route.params;
+    let articleWords: string[] = article.item.title.trim().split(' ');
 
     const wordClicked = (word: string) => {
         word = word.trim().toLowerCase();

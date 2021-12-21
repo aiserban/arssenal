@@ -34,7 +34,7 @@ export const ArticleList = (props: any) => {
         <ScrollView refreshControl={<RefreshControl refreshing={ isRefreshing } onRefresh={refresh}></RefreshControl>}>
             { itemList.map(item => {
                     return (
-                        <Article key={item.item.id} item={item.item} source={item.parent.name} sourceUrl={item.parent.url} logo={item.parent.logoUrl}></Article>
+                        <Article key={item.item.id} item={item} source={item.parent.name} sourceUrl={item.parent.url} logo={item.parent.logoUrl}></Article>
                     )
 
             })}
